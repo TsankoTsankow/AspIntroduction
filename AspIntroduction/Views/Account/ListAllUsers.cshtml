@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AllUsersViewModel>
+
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Role</td>
+            <td>AddToRole</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Role</td>
+                <td>
+                    <form asp-action="AddRoleToUser" asp-controller="Account" method="post">
+                        <input  type="hidden" id="email" name="email" value="@item.Email" />
+                        @*<label  for="email"></label>*@
+                        <button class="btn btn-info btn-sm" >AddToRole</button>
+                    </form>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

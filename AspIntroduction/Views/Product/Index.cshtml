@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProductDto>
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Quantity</td>
+            <td>Buy</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Quantity</td>
+                <td><button class="btn btn-success">Buy</button></td>
+                <td>
+                    <form asp-action="Delete" asp-controller="Product" method="post">
+                        <input name="id" type="hidden" value="@item.Id" />
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<form asp-action="Add" asp-controller="Product" method="post">
+    <button class="btn btn-success">Add new product</button>
+</form>
+
+@*<button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Login</button>*@
